@@ -9,23 +9,42 @@
         <form method="POST" action="{{ route('register') }}">
             @csrf
 
+            <!-- Perfil -->
             <div>
+                <x-label for="perfil" value="Perfil (0 para Admin, 1 para Alumno)" />
+                <select id="perfil" name="perfil" class="block mt-1 w-full" required>
+                    <option value="0">Admin</option>
+                    <option value="1">Alumno</option>
+                </select>
+            </div>
+
+            <!-- Clave -->
+            <div class="mt-4">
+                <x-label for="clave" value="Clave" />
+                <x-input id="clave" class="block mt-1 w-full" type="text" name="clave" maxlength="4" :value="old('clave')" required />
+            </div>
+
+            <!-- Nombre -->
+            <div class="mt-4">
                 <x-label for="name" value="{{ __('Name') }}" />
                 <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             </div>
 
+            <!-- Correo -->
             <div class="mt-4">
                 <x-label for="email" value="{{ __('Email') }}" />
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
             </div>
 
+            <!-- Contraseña -->
             <div class="mt-4">
-                <x-label for="password" value="{{ __('Password') }}" />
+                <x-label for="password" value="{{ __('Contraseña') }}" />
                 <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
             </div>
 
+            <!-- Confirmar Contraseña -->
             <div class="mt-4">
-                <x-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
+                <x-label for="password_confirmation" value="{{ __('Confirmar Contraseña') }}" />
                 <x-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
             </div>
 
@@ -34,7 +53,6 @@
                     <x-label for="terms">
                         <div class="flex items-center">
                             <x-checkbox name="terms" id="terms" required />
-
                             <div class="ms-2">
                                 {!! __('I agree to the :terms_of_service and :privacy_policy', [
                                         'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">'.__('Terms of Service').'</a>',
