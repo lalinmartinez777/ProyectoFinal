@@ -15,4 +15,9 @@ class Admin extends Model
     {
         return $this->hasMany(ClassModel::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

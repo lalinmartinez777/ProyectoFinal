@@ -9,43 +9,43 @@
         <form method="POST" action="{{ route('register') }}">
             @csrf
 
-            <!-- Perfil -->
+            <!-- Campo Nombre -->
             <div>
-                <x-label for="perfil" value="Perfil (0 para Admin, 1 para Alumno)" />
-                <select id="perfil" name="perfil" class="block mt-1 w-full" required>
-                    <option value="0">Admin</option>
-                    <option value="1">Alumno</option>
-                </select>
-            </div>
-
-            <!-- Clave -->
-            <div class="mt-4">
-                <x-label for="clave" value="Clave" />
-                <x-input id="clave" class="block mt-1 w-full" type="text" name="clave" maxlength="4" :value="old('clave')" required />
-            </div>
-
-            <!-- Nombre -->
-            <div class="mt-4">
                 <x-label for="name" value="{{ __('Name') }}" />
                 <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             </div>
 
-            <!-- Correo -->
+            <!-- Campo Correo -->
             <div class="mt-4">
                 <x-label for="email" value="{{ __('Email') }}" />
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
             </div>
 
-            <!-- Contraseña -->
+            <!-- Campo Contraseña -->
             <div class="mt-4">
-                <x-label for="password" value="{{ __('Contraseña') }}" />
+                <x-label for="password" value="{{ __('Password') }}" />
                 <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
             </div>
 
-            <!-- Confirmar Contraseña -->
+            <!-- Campo Confirmar Contraseña -->
             <div class="mt-4">
-                <x-label for="password_confirmation" value="{{ __('Confirmar Contraseña') }}" />
+                <x-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
                 <x-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
+            </div>
+
+            <!-- Campo Perfil -->
+            <div class="mt-4">
+                <x-label for="perfil" value="{{ __('Perfil') }}" />
+                <select id="perfil" name="perfil" class="block mt-1 w-full" required>
+                    <option value="1">{{ __('Alumno') }}</option>
+                    <option value="0">{{ __('Administrador') }}</option>
+                </select>
+            </div>
+
+            <!-- Campo Clave -->
+            <div class="mt-4">
+                <x-label for="clave" value="{{ __('Clave (4 dígitos)') }}" />
+                <x-input id="clave" class="block mt-1 w-full" type="text" name="clave" minlength="4" maxlength="4" required />
             </div>
 
             @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
